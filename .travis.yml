@@ -1,0 +1,42 @@
+language: c
+sudo: false
+
+env:
+  global:
+    # RACKET_DIR is an argument to install-racket.sh
+    - RACKET_DIR=~/racket
+    - PATH="$RACKET_DIR/bin:$PATH"
+  matrix:
+    # RACKET_VERSION is an argument to install-racket.sh
+    - RACKET_VERSION=6.6
+    - RACKET_VERSION=6.7
+    - RACKET_VERSION=6.8
+    - RACKET_VERSION=RELEASE
+    - RACKET_VERSION=HEAD
+
+before_install:
+- curl -L https://raw.githubusercontent.com/greghendershott/travis-racket/master/install-racket.sh | bash
+- raco pkg install --deps search-auto doc-coverage cover cover-codecov # or cover-coveralls
+
+install:
+- raco pkg install --deps search-auto -j 2 phc-adt/ phc-adt-doc/ phc-adt-lib/ phc-adt-test/
+
+script:
+- raco test -x -p phc-adt phc-adt-doc phc-adt-lib phc-adt-test
+- raco setup --check-pkg-deps --no-zo --no-launcher --no-install --no-post-install --no-docs --pkgs phc-adt phc-adt-doc phc-adt-lib phc-adt-test
+- raco doc-coverage phc-adt
+- raco cover -s main -s test -s doc -f codecov -f html -d ~/coverage . || true
+# TODO: add an option to cover to run the "outer" module too, not just the submodules.
+# TODO: deploy the coverage info.
+#
+#
+#####################################################################################################
+- mv ~/.racket ~/.racket-local-install
+- echo
+- echo Installing from the main repository, to catch eventual dependency issues on the master branch.
+- echo
+- raco pkg install --deps search-auto -j 2 "$(basename "$TRAVIS_BUILD_DIR")"
+- raco test -x -p "$(basename "$TRAVIS_BUILD_DIR")"
+- raco setup --check-pkg-deps --no-zo --no-launcher --no-install --no-post-install --no-docs --pkgs "$(basename "$TRAVIS_BUILD_DIR")"
+- raco doc-coverage "$(basename "$TRAVIS_BUILD_DIR")"
+#####################################################################################################
