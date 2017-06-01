@@ -31,12 +31,13 @@ script:
 #
 #
 #####################################################################################################
-- mv ~/.racket ~/.racket-local-install
-- echo
-- echo Installing from the main repository, to catch eventual dependency issues on the master branch.
-- echo
-- raco pkg install --deps search-auto -j 2 "$(basename "$TRAVIS_BUILD_DIR")"
-- raco test -x -p "$(basename "$TRAVIS_BUILD_DIR")"
-- raco setup --check-pkg-deps --no-zo --no-launcher --no-install --no-post-install --no-docs --pkgs "$(basename "$TRAVIS_BUILD_DIR")"
-- raco doc-coverage "$(basename "$TRAVIS_BUILD_DIR")"
+# This actually takes too long, and the build times out sometimes.
+#- mv ~/.racket ~/.racket-local-install
+#- echo
+#- echo Installing from the main repository, to catch eventual dependency issues on the master branch.
+#- echo
+#- raco pkg install --deps search-auto -j 2 "$(basename "$TRAVIS_BUILD_DIR")"
+#- raco test -x -p "$(basename "$TRAVIS_BUILD_DIR")"
+#- raco setup --check-pkg-deps --no-zo --no-launcher --no-install --no-post-install --no-docs --pkgs "$(basename "$TRAVIS_BUILD_DIR")"
+#- raco doc-coverage "$(basename "$TRAVIS_BUILD_DIR")"
 #####################################################################################################
