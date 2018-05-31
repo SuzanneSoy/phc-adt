@@ -22,7 +22,7 @@ install:
 - raco pkg install --deps search-auto -j 2 phc-adt/ phc-adt-doc/ phc-adt-lib/ phc-adt-test/
 
 script:
-- raco test -x -p phc-adt phc-adt-doc phc-adt-lib phc-adt-test
+- raco test -r -p phc-adt phc-adt-doc phc-adt-lib phc-adt-test
 - raco setup --check-pkg-deps --no-zo --no-launcher --no-install --no-post-install --no-docs --pkgs phc-adt phc-adt-doc phc-adt-lib phc-adt-test
 - raco doc-coverage phc-adt
 - raco cover -s main -s test -s doc -f codecov -f html -d ~/coverage . || true
@@ -37,7 +37,7 @@ script:
 #- echo Installing from the main repository, to catch eventual dependency issues on the master branch.
 #- echo
 #- raco pkg install --deps search-auto -j 2 "$(basename "$TRAVIS_BUILD_DIR")"
-#- raco test -x -p "$(basename "$TRAVIS_BUILD_DIR")"
+#- raco test -r -p "$(basename "$TRAVIS_BUILD_DIR")"
 #- raco setup --check-pkg-deps --no-zo --no-launcher --no-install --no-post-install --no-docs --pkgs "$(basename "$TRAVIS_BUILD_DIR")"
 #- raco doc-coverage "$(basename "$TRAVIS_BUILD_DIR")"
 #####################################################################################################
