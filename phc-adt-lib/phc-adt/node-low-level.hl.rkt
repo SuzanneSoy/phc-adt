@@ -221,7 +221,7 @@ them with a special marker.
 
 @chunk[<node-hash>
        (: node-hash (∀ (fieldᵢ/τ …)
-                       (→ (node-id fieldᵢ/τ … Any Any) (→ Any Fixnum) Fixnum)))
+                       (→ (node-id fieldᵢ/τ … Any Any) (→ Any Integer) Integer)))
        (define (node-hash nd racket-recur-hash)
          (if (eq? (raw-node-database ((struct-accessor node-id raw) nd))
                   'unique-copy)
@@ -275,9 +275,9 @@ To combine hash codes, we simply compute their @elem[#:style 'tt]{xor}. Later
 versions of this library may use more sophisticated mechanisms.
 
 @chunk[<combine-hash-codes>
-       (: combine-hash-codes (→ Fixnum * Fixnum))
+       (: combine-hash-codes (→ Integer * Integer))
        (define (combine-hash-codes . fixnums)
-         (apply fxxor fixnums))]
+         (apply bitwise-xor fixnums))]
 
 @subsection{Caching node equality}
 
