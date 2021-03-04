@@ -22,4 +22,4 @@
                      "datatype"))
 (define pkg-desc "Algebraic Datatypes tailored for writing compilers (documentation only)")
 (define version "1.1")
-(define pkg-authors '("Georges Dupéron"))
+(define pkg-authors '("Suzanne Soy"))

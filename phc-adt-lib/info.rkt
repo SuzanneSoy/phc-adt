@@ -22,4 +22,4 @@
                      "scribble-math"))
 (define pkg-desc "Algebraic Datatypes tailored for writing compilers (tests are in phc-adt-test)")
 (define version "1.1")
-(define pkg-authors '("Georges Dupéron"))
+(define pkg-authors '("Suzanne Soy"))

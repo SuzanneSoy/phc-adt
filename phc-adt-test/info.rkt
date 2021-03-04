@@ -11,4 +11,4 @@
 (define build-deps '())
 (define pkg-desc "Tests for the phc-adt library")
 (define version "1.1")
-(define pkg-authors '("Georges Dupéron"))
+(define pkg-authors '("Suzanne Soy"))
