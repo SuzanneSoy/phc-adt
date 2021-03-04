@@ -9,4 +9,4 @@
 (define build-deps '())
 (define pkg-desc "Algebraic Datatypes tailored for writing compilers")
 (define version "1.1")
-(define pkg-authors '("Suzanne Soy"))
+(define pkg-authors '(|Suzanne Soy|))
