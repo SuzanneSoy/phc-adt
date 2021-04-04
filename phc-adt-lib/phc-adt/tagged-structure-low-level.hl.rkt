@@ -235,13 +235,13 @@ nodes have the same shape, but cannot by themselves create logical cycles.
                         …
                         #t))
                  (λ (a rec-hash)
-                   (fxxor (rec-hash 'id)
-                          (rec-hash (force ((struct-accessor pid fieldᵢ) a)))
-                          …))
+                   (bitwise-xor (rec-hash 'id)
+                                (rec-hash (force ((struct-accessor pid fieldᵢ) a)))
+                                …))
                  (λ (a rec-hash)
-                   (fxxor (rec-hash 'id)
-                          (rec-hash (force ((struct-accessor pid fieldᵢ) a)))
-                          …))))]
+                   (bitwise-xor (rec-hash 'id)
+                                (rec-hash (force ((struct-accessor pid fieldᵢ) a)))
+                                …))))]
 
 @section{Pre-declaring structs}
 

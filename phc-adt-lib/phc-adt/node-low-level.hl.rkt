@@ -104,17 +104,11 @@ same if the @tc[database] and @tc[index] is the same for both nodes.
                     (eq? (raw-node-database a) (raw-node-database b))
                     (equal? (raw-node-index a) (raw-node-index b))))
              (λ (a r)
-               (fxxor (eq-hash-code (raw-node-database a))
-                      (let ([i (r (raw-node-index a))])
-                        (if (fixnum? i)
-                            i
-                            (error "index too big")))))
+               (bitwise-xor (eq-hash-code (raw-node-database a))
+                            (r (raw-node-index a))))
              (λ (a r)
-               (fxxor (eq-hash-code (raw-node-database a))
-                      (let ([i (r (raw-node-index a))])
-                        (if (fixnum? i)
-                            i
-                            (error "index too big"))))))]
+               (bitwise-xor (eq-hash-code (raw-node-database a))
+                            (r (raw-node-index a)))))]
 
 The following function can then be used to test if two nodes are the same, based
 on the contents of their @tc[raw] field:
@@ -227,7 +221,7 @@ them with a special marker.
 
 @chunk[<node-hash>
        (: node-hash (∀ (fieldᵢ/τ …)
-                       (→ (node-id fieldᵢ/τ … Any Any) (→ Any Fixnum) Fixnum)))
+                       (→ (node-id fieldᵢ/τ … Any Any) (→ Any Integer) Integer)))
        (define (node-hash nd racket-recur-hash)
          (if (eq? (raw-node-database ((struct-accessor node-id raw) nd))
                   'unique-copy)
@@ -281,9 +275,9 @@ To combine hash codes, we simply compute their @elem[#:style 'tt]{xor}. Later
 versions of this library may use more sophisticated mechanisms.
 
 @chunk[<combine-hash-codes>
-       (: combine-hash-codes (→ Fixnum * Fixnum))
-       (define (combine-hash-codes . fixnums)
-         (apply fxxor fixnums))]
+       (: combine-hash-codes (→ Integer * Integer))
+       (define (combine-hash-codes . hashes)
+         (apply bitwise-xor hashes))]
 
 @subsection{Caching node equality}
 
