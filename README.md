@@ -1,5 +1,5 @@
-[![Build Status,](https://img.shields.io/travis/jsmaniac/phc-adt/master.svg)](https://travis-ci.org/jsmaniac/phc-adt)
-[![Coverage Status,](https://img.shields.io/codecov/c/github/jsmaniac/phc-adt/master.svg)](https://codecov.io/gh/jsmaniac/phc-adt)
+[![Build Status,](https://img.shields.io/travis/jsmaniac/phc-adt/main.svg)](https://travis-ci.org/jsmaniac/phc-adt)
+[![Coverage Status,](https://img.shields.io/codecov/c/github/jsmaniac/phc-adt/main.svg)](https://codecov.io/gh/jsmaniac/phc-adt)
 [![Build Stats,](https://img.shields.io/badge/build-stats-blue.svg)](http://jsmaniac.github.io/travis-stats/#jsmaniac/phc-adt)
 [![Online Documentation,](https://img.shields.io/badge/docs-online-blue.svg)](http://docs.racket-lang.org/phc-adt/)
 [![Maintained as of 2017,](https://img.shields.io/maintenance/yes/2017.svg)](https://github.com/jsmaniac/phc-adt/issues)
