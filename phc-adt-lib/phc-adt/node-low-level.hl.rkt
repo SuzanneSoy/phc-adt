@@ -105,10 +105,16 @@ same if the @tc[database] and @tc[index] is the same for both nodes.
                     (equal? (raw-node-index a) (raw-node-index b))))
              (λ (a r)
                (fxxor (eq-hash-code (raw-node-database a))
-                      (r (raw-node-index a))))
+                      (let ([i (r (raw-node-index a))])
+                        (if (fixnum? i)
+                            i
+                            (error "index too big")))))
              (λ (a r)
                (fxxor (eq-hash-code (raw-node-database a))
-                      (r (raw-node-index a)))))]
+                      (let ([i (r (raw-node-index a))])
+                        (if (fixnum? i)
+                            i
+                            (error "index too big"))))))]
 
 The following function can then be used to test if two nodes are the same, based
 on the contents of their @tc[raw] field:
