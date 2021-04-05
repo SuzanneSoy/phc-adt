@@ -26,7 +26,7 @@ before_install:
 - if $COVER; then raco pkg install --deps search-auto doc-coverage cover cover-codecov; fi # or cover-coveralls
 
 install:
-- raco pkg install --deps search-auto -j 2 phc-adt/ phc-adt-doc/ phc-adt-lib/ phc-adt-test/
+- raco pkg install --deps search-auto -j 1 phc-adt/ phc-adt-doc/ phc-adt-lib/ phc-adt-test/
 
 script:
 - raco test -r -p phc-adt phc-adt-doc phc-adt-lib phc-adt-test
